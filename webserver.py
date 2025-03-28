@@ -27,7 +27,7 @@ count = 0
 public_key, private_key = paillier.generate_paillier_keypair()
 
 # ======= Handle Client Connection =======
-async def handle_client(websocket, _):
+async def handle_client(websocket, _=None):
     global public_keys
     
     try:
