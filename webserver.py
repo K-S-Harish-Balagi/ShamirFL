@@ -5,9 +5,22 @@ import numpy as np
 import websockets
 from phe import paillier
 import ShamirSecret
+import socket
+import requests
+
+def get_public_ipv4():
+    try:
+        return requests.get('https://api4.ipify.org').text  # Ensures IPv4
+    except requests.RequestException:
+        return "Unable to determine public IPv4"
+
+HOST = get_public_ipv4()
+print(f"Server Public IPv4: {HOST}")
+
 
 # ======= Server Parameters =======
-HOST = '127.0.0.1'
+#HOST = socket.gethostbyname(socket.gethostname()) # gets host local ip
+#HOST = '127.0.0.1' # manual
 PORT = 65432
 THRESHOLD = 2
 BIG_P = 104729  # Large prime for modular operation
