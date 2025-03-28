@@ -94,7 +94,7 @@ async def aggregate_weight(websocket, client_id):
         # Aggregate encrypted local models homomorphically
         aggregated_ciphertext = np.array(ciphertexts[list(ciphertexts.keys())[0]])
         for cid in list(ciphertexts.keys())[1:]:
-            aggregated_ciphertext = aggregated_ciphertext + np.array(ciphertexts[cid])
+            aggregated_ciphertext = (aggregated_ciphertext + np.array(ciphertexts[cid])) % ShamirSecret.PRIME_Q
         
         print(f"[SERVER] Aggregated Ciphertext: {aggregated_ciphertext}")
 
