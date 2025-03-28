@@ -4,8 +4,8 @@ PRIME_Q = 123457 # Prime number
 def calculate_Y(x, poly):
     y, temp = 0, 1
     for coeff in poly: 
-        y += coeff * temp
-        temp *= x
+        y = (y + coeff * temp) % PRIME_Q  # Apply modulo PRIME_Q
+        temp = (temp * x) % PRIME_Q  # Keep temp within the field
     return y
 
 def generate_share(shamir_secret, points, threshold):
